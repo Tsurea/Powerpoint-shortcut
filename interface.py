@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+import pyglet
 
 class Interface:
     def __init__(self):
@@ -20,19 +21,14 @@ class Interface:
         self.create_captureFrame()
         self.create_fileFrame()
         self.create_startFrame()
+
     def create_menu(self):
         pass
 
     def create_nameFrame(self):
         self.frame[0].place(relx=0, rely=0, relwidth=1, relheight=0.4)
-
-        canvas = tk.Canvas(self.frame[0], width=315, height=245)
-        canvas.pack()
-
-        img = tk.PhotoImage("assets/SmileShot.png")
-        canvas.create_image(0, 0, anchor=tk.NW, image=img)
-        
-        #self.frame[0].place(relx=0, rely=0, relwidth=1, relheight=1)
+        pyglet.font.add_file('Bangers-Regular.ttf')
+        tk.Label(self.frame[0], text='DJL TRAINING', font=("Bangers-Regular", 20), fg='#0A6EE4').place(relx=.5, rely=0, relwidth=0.5, relheight=0.4)
 
     def create_captureFrame(self):
         self.frame[1]['bg'] = '#0A6EE4'
