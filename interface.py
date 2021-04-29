@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.ttk import *
 from PIL import ImageTk, Image
 import pyglet
 
@@ -7,8 +8,10 @@ class Interface:
         self.window = tk.Tk()
 
         self.window.title("DJL Training")
-        self.window.geometry("700x400")
-        self.window.resizable(1, 1)
+        self.window.geometry("700x450")
+        self.window.iconbitmap('assets/powerpoint.ico')
+        self.window.resizable(0, 0)
+        self.window.config(bg="#FFFFFF")
 
         self.frame = [tk.Frame(self.window) for i in range(4)]
 
@@ -27,12 +30,15 @@ class Interface:
 
     def create_nameFrame(self):
         self.frame[0].place(relx=0, rely=0, relwidth=1, relheight=0.4)
-        
-        img = ImageTk.PhotoImage(Image.open("assets/SmileShot.png"))
-        tk.Label(self.frame[0], image=img).place(relx=0, rely=0, relwidth=0.5, relheight=.5)
 
+        self.photo = tk.PhotoImage(file='./assets/SmileShot.png').subsample(2, 2)
+        self.Artwork = tk.Label(self.frame[0], image=self.photo)
+        self.Artwork.photo = self.photo
+        self.Artwork.place(relx=0.1, rely=0, relwidth=0.3, relheight=1)
+        
         pyglet.font.add_file('myFont.ttf')
         tk.Label(self.frame[0], text='DJL TRAINING', font=("Bangers", 36), fg='#0A6EE4').place(relx=.45, rely=0.2, relwidth=0.5, relheight=0.4)
+        
         tk.Label(self.frame[0], text='Screenshot to PowerPoint', font=('Helvetica', 20), fg='#FF5500').place(relx=.445, rely=0.6, relwidth=0.5, relheight=.2)
 
     def create_captureFrame(self):
