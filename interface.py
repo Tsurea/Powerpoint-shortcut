@@ -27,8 +27,13 @@ class Interface:
 
     def create_nameFrame(self):
         self.frame[0].place(relx=0, rely=0, relwidth=1, relheight=0.4)
-        pyglet.font.add_file('Bangers-Regular.ttf')
-        tk.Label(self.frame[0], text='DJL TRAINING', font=("Bangers-Regular", 20), fg='#0A6EE4').place(relx=.5, rely=0, relwidth=0.5, relheight=0.4)
+        
+        img = ImageTk.PhotoImage(Image.open("assets/SmileShot.png"))
+        tk.Label(self.frame[0], image=img).place(relx=0, rely=0, relwidth=0.5, relheight=.5)
+
+        pyglet.font.add_file('myFont.ttf')
+        tk.Label(self.frame[0], text='DJL TRAINING', font=("Bangers", 36), fg='#0A6EE4').place(relx=.45, rely=0.2, relwidth=0.5, relheight=0.4)
+        tk.Label(self.frame[0], text='Screenshot to PowerPoint', font=('Helvetica', 20), fg='#FF5500').place(relx=.445, rely=0.6, relwidth=0.5, relheight=.2)
 
     def create_captureFrame(self):
         self.frame[1]['bg'] = '#0A6EE4'
@@ -37,7 +42,7 @@ class Interface:
         tk.Label(self.frame[1], text="App to Capture", fg="white", bg='#0A6EE4', font=("Courrier", 13)).place(relx=0, rely=0, relwidth=0.3, relheight=1)
 
         self.menubutton = tk.Menubutton(self.frame[1], text="Choose your app")
-        self.menubutton.menu = tk.Menu(self.menubutton)
+        self.menubutton.menu = tk.Menu(self.menubutton, tearoff=0)
         self.menubutton["menu"] = self.menubutton.menu
 
         self.menubutton.menu.add_command(label="APP", command=lambda: print("app"))
