@@ -1,5 +1,7 @@
 import psutil
 import pyautogui, os
+
+import win32gui
 import win32com.client
 import win32api
 
@@ -20,6 +22,27 @@ class Power:
         
         presentation = Application.Presentations.Open(Filename=file)
         slide = presentation.Slides.Add(1, LAYOUT_BLANK)
+    
+    def screenshot(self, app):
+        '''
+        This module do the screenshot of the choosed app.
+
+        param app: str, name of the app
+        '''
+        # First get is position and size
+        coordonnee = self.callback(app)
+
+        image = pyautogui.screenshot('screenshot.png', region=coordonnee)
+
+
+    def callback(self, window, extra):
+        '''
+        Get the position and size of the window.
+        '''
+        rect = win32gui.GetWindowRect(window)
+
+        print(f'Window {win32gui.GetWindowText(window)}')
+        print(f'x: {rect[0]}\ny: {rect[1]}\nw: {rect[2] - rect[0]}\nh: {rect[3] - rect[1]}')
 
 class Recorder:
     def __init__(self):
@@ -43,4 +66,4 @@ class Recorder:
                     return i
 
 if __name__ == "__main__":
-    pass
+    print(win32gui.EnumWindows(Power().callback, None))
