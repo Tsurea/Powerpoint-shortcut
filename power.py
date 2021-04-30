@@ -43,4 +43,4 @@ class Recorder:
                     return i
 
 if __name__ == "__main__":
-    Power().appRunning()
+    pass
